@@ -7,6 +7,7 @@ class ConfigTest < GeneratorTestCase
     plugins = [".rubocop/custom.yml"]
     gems = ["rubocop-some"]
 
+    <%= include "deps" %>
     <%= include "config" %>
   CODE
 
@@ -18,6 +19,7 @@ class ConfigTest < GeneratorTestCase
 
       assert_file ".rubocop.yml"
       assert_file_contains ".rubocop.yml", "- .rubocop/custom.yml"
+      assert_file_contains ".rubocop.yml", "TargetRubyVersion: 3.1"
 
       assert_file_contains "Gemfile", "eval_gemfile \"gemfiles/rubocop.gemfile\""
     end

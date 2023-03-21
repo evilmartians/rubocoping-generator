@@ -6,8 +6,8 @@ class TodoTest < GeneratorTestCase
   template <<~'CODE'
     plugins = [".rubocop/custom.yml"]
     gems = []
-    has_bin_rubocop = File.exist?("bin/rubocop")
 
+    <%= include "deps" %>
     <%= include "config" %>
     <%= include "todo" %>
 
