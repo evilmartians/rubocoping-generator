@@ -20,7 +20,7 @@ say_status :info, "Congratulations! Your project got style! 🎉"
 
 if yes?("Would you like to run RuboCop to check your configuration? (y/n)")
   in_root do
-    if has_bin_rubocop
+    if File.file?("bin/rubocop")
       Bundler.with_unbundled_env { run "bin/rubocop" }
     else
       Bundler.with_unbundled_env do

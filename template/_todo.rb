@@ -2,6 +2,7 @@ if yes?("Would you like to generate a TODO config?")
   # First, run RuboCop and check the output
   # with formatter json
   in_root do
+    has_bin_rubocop = File.file?("bin/rubocop")
     command = has_bin_rubocop ? "bin/rubocop" : "bundle exec rubocop"
 
     output = Bundler.with_unbundled_env do
