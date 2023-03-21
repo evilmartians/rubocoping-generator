@@ -1,0 +1,5 @@
+development:
+  adapter: postgresql
+  database: my_database
+  host: localhost
+

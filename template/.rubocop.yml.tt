@@ -1,0 +1,19 @@
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  - standard
+
+inherit_gem:
+  standard: config/base.yml
+
+inherit_from:
+<% plugins.each do |plugin| %>
+  - <%= plugin %>
+<% end %>
+  - .rubocop/strict.yml
+
+AllCops:
+  SuggestExtensions: false
+  TargetRubyVersion: 3.2

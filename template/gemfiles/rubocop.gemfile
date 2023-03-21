@@ -1,0 +1,5 @@
+source "https://rubygems.org"
+<% gems.each do |gem| %>
+gem "<%= gem %>"
+<% end %>
+gem "standard", "~> 1.0"
