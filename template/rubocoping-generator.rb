@@ -4,6 +4,7 @@ say "Hey! Let's configure RuboCop for your project 🤖!\n" \
 plugins = []
 gems = []
 
+<%= include "deps" %>
 <%= include "rails" %>
 <%= include "testing" %>
 <%= include "graphql" %>
