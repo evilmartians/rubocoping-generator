@@ -2,8 +2,10 @@ name: Publish
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - master
+    # tags:
+    #   - v*
   workflow_dispatch:
 
 jobs:
