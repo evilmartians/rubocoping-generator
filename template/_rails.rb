@@ -1,6 +1,6 @@
 has_rails = ((specs | deps) & %w[activerecord actionpack rails]).any?
 
-if has_rails && yes?("Would your like to install rubocop-rspec?")
+if has_rails && yes?("Would your like to install rubocop-rails?")
   file ".rubocop/rails.yml", <%= code(".rubocop/rails.yml") %>
   plugins << ".rubocop/rails.yml"
   gems << "rubocop-rails"
