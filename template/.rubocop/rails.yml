@@ -21,6 +21,8 @@ Rails/ApplicationJob:
 
 Rails/ApplicationRecord:
   Enabled: true
+  Exclude:
+    - 'db/migrate/**/*'
 
 Rails/AssertNot:
   Enabled: true
