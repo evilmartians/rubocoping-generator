@@ -9,7 +9,7 @@ if has_rspec && yes?("Would your like to install rubocop-rspec? (y/n)")
 end
 
 has_minitest = in_root do
-  ((specs | deps) & %w[rspec-core]).any? && File.directory?("test")
+  ((specs | deps) & %w[minitest]).any? && File.directory?("test")
 end
 
 if has_minitest && yes?("Would your like to install rubocop-minitest? (y/n)")
