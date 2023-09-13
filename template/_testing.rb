@@ -4,7 +4,7 @@ end
 
 if has_rspec && yes?("Would your like to install rubocop-rspec?")
   file ".rubocop/rspec.yml", <%= code(".rubocop/rspec.yml") %>
-  plugins << ".rubocop/rspec.yml"
+  extensions << ".rubocop/rspec.yml"
   gems << "rubocop-rspec"
 end
 
@@ -14,6 +14,6 @@ end
 
 if has_minitest && yes?("Would your like to install rubocop-minitest?")
   file ".rubocop/minitest.yml", <%= code(".rubocop/minitest.yml") %>
-  plugins << ".rubocop/minitest.yml"
+  extensions << ".rubocop/minitest.yml"
   gems << "rubocop-minitest"
 end

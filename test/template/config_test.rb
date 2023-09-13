@@ -4,7 +4,9 @@ require "test_helper"
 
 class ConfigTest < GeneratorTestCase
   template <<~'CODE'
-    plugins = [".rubocop/custom.yml"]
+    plugins = ["standard-some"]
+    base_configs = ["standard-some"]
+    extensions = [".rubocop/custom.yml"]
     gems = ["rubocop-some"]
 
     <%= include "deps" %>
@@ -20,6 +22,8 @@ class ConfigTest < GeneratorTestCase
       assert_file ".rubocop.yml"
       assert_file_contains ".rubocop.yml", "- .rubocop/custom.yml"
       assert_file_contains ".rubocop.yml", "TargetRubyVersion: 3.1"
+      assert_file_contains ".rubocop.yml", "- standard-some"
+      assert_file_contains ".rubocop.yml", "  standard-some: config/base.yml"
 
       assert_file_contains "Gemfile", "eval_gemfile \"gemfiles/rubocop.gemfile\""
     end

@@ -4,16 +4,24 @@ inherit_mode:
 
 require:
   - standard
+  - standard-custom
+  - standard-performance
   - rubocop-performance
+<% plugins.each do |plugin| %>
+  - <%= plugin %>
+<% end %>
 
 inherit_gem:
   standard: config/base.yml
   standard-performance: config/base.yml
   standard-custom: config/base.yml
+<% base_configs.each do |plugin| %>
+  <%= plugin %>: config/base.yml
+<% end %>
 
 inherit_from:
-<% plugins.each do |plugin| %>
-  - <%= plugin %>
+<% extensions.each do |ext| %>
+  - <%= ext %>
 <% end %>
   - .rubocop/strict.yml
 

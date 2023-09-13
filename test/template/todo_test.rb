@@ -4,10 +4,13 @@ require "test_helper"
 
 class TodoTest < GeneratorTestCase
   template <<~'CODE'
-    plugins = [".rubocop/custom.yml"]
+    plugins = []
+    base_configs = []
+    extensions = [".rubocop/custom.yml"]
     gems = []
 
     <%= include "deps" %>
+    <%= include "rails" %>
     <%= include "config" %>
     <%= include "todo" %>
 
@@ -19,12 +22,13 @@ class TodoTest < GeneratorTestCase
       FileUtils.mkdir_p(".rubocop")
       File.write(".rubocop/custom.yml", "")
       File.delete("Gemfile.lock")
-      File.write("Gemfile", %(source "https://rubygems.org"\n))
+      File.write("Gemfile", %(source "https://rubygems.org"\ngem 'activerecord'\n))
     end
 
-    run_generator(input: ["y"]) do |output|
+    run_generator(input: ["y", "y"]) do |output|
       assert_file ".rubocop_todo.yml"
       assert_file ".rubocop.yml"
+      assert_file_contains ".rubocop.yml", "  - rubocop-performance\n  - rubocop-rails"
       assert_file_contains ".rubocop.yml", "  - .rubocop_todo.yml\n  - .rubocop/strict.yml"
     end
   end

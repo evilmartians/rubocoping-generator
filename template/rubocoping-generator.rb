@@ -2,6 +2,8 @@ say "Hey! Let's configure RuboCop for your project 🤖!\n" \
     "For more information, visit https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard"
 
 plugins = []
+base_configs = []
+extensions = []
 gems = []
 
 <%= include "deps" %>

@@ -4,11 +4,11 @@ require "test_helper"
 
 class TestingTest < GeneratorTestCase
   template <<~'CODE'
-    plugins = []
+    extensions = []
     gems = []
     <%= include "deps" %>
     <%= include "testing" %>
-    say "PLUGINS=#{plugins.join(",")}"
+    say "EXTENSIONS=#{extensions.join(",")}"
     say "GEMS=#{gems.join(",")}"
   CODE
 
@@ -20,7 +20,7 @@ class TestingTest < GeneratorTestCase
 
     run_generator(input: ["y"]) do |output|
       assert_file ".rubocop/rspec.yml"
-      assert_line_printed output, "PLUGINS=.rubocop/rspec.yml"
+      assert_line_printed output, "EXTENSIONS=.rubocop/rspec.yml"
       assert_line_printed output, "GEMS=rubocop-rspec"
     end
   end
@@ -33,7 +33,7 @@ class TestingTest < GeneratorTestCase
 
     run_generator(input: ["n"]) do |output|
       refute_file ".rubocop/rspec.yml"
-      assert_line_printed output, "PLUGINS="
+      assert_line_printed output, "EXTENSIONS="
       assert_line_printed output, "GEMS="
     end
   end
@@ -46,7 +46,7 @@ class TestingTest < GeneratorTestCase
 
     run_generator(input: ["y"]) do |output|
       assert_file ".rubocop/minitest.yml"
-      assert_line_printed output, "PLUGINS=.rubocop/minitest.yml"
+      assert_line_printed output, "EXTENSIONS=.rubocop/minitest.yml"
       assert_line_printed output, "GEMS=rubocop-minitest"
     end
   end
@@ -59,7 +59,7 @@ class TestingTest < GeneratorTestCase
 
     run_generator(input: ["n"]) do |output|
       refute_file ".rubocop/minitest.yml"
-      assert_line_printed output, "PLUGINS="
+      assert_line_printed output, "EXTENSIONS="
       assert_line_printed output, "GEMS="
     end
   end
@@ -75,7 +75,7 @@ class TestingTest < GeneratorTestCase
     run_generator(input: ["y", "y"]) do |output|
       assert_file ".rubocop/minitest.yml"
       assert_file ".rubocop/rspec.yml"
-      assert_line_printed output, "PLUGINS=.rubocop/rspec.yml,.rubocop/minitest.yml"
+      assert_line_printed output, "EXTENSIONS=.rubocop/rspec.yml,.rubocop/minitest.yml"
       assert_line_printed output, "GEMS=rubocop-rspec,rubocop-minitest"
     end
   end
@@ -84,7 +84,7 @@ class TestingTest < GeneratorTestCase
     run_generator do |output|
       refute_file ".rubocop/minitest.yml"
       refute_file ".rubocop/rspec.yml"
-      assert_line_printed output, "PLUGINS="
+      assert_line_printed output, "EXTENSIONS="
       assert_line_printed output, "GEMS="
     end
   end

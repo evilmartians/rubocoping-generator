@@ -4,11 +4,11 @@ require "test_helper"
 
 class GraphQLTest < GeneratorTestCase
   template <<~'CODE'
-    plugins = []
+    extensions = []
     gems = []
     <%= include "deps" %>
     <%= include "graphql" %>
-    say "PLUGINS=#{plugins.join(",")}"
+    say "EXTENSIONS=#{extensions.join(",")}"
     say "GEMS=#{gems.join(",")}"
   CODE
 
@@ -28,7 +28,7 @@ class GraphQLTest < GeneratorTestCase
 
     run_generator(input: ["y"]) do |output|
       assert_file ".rubocop/graphql.yml"
-      assert_line_printed output, "PLUGINS=.rubocop/graphql.yml"
+      assert_line_printed output, "EXTENSIONS=.rubocop/graphql.yml"
       assert_line_printed output, "GEMS=rubocop-graphql"
     end
   end
@@ -49,7 +49,7 @@ class GraphQLTest < GeneratorTestCase
 
     run_generator(input: ["n"]) do |output|
       refute_file ".rubocop/graphql.yml"
-      assert_line_printed output, "PLUGINS="
+      assert_line_printed output, "EXTENSIONS="
       assert_line_printed output, "GEMS="
     end
   end
@@ -57,7 +57,7 @@ class GraphQLTest < GeneratorTestCase
   def test_no_graphql_detected
     run_generator do |output|
       refute_file ".rubocop/graphql.yml"
-      assert_line_printed output, "PLUGINS="
+      assert_line_printed output, "EXTENSIONS="
     end
   end
 end
