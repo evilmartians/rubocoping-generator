@@ -1,4 +1,4 @@
-has_bin_rubocop = yes?("Would your like to create a standalone RuboCop executable (bin/rubocop)?")
+has_bin_rubocop = yes?("Would your like to create a standalone RuboCop executable (bin/rubocop)? (y/n)")
 
 if has_bin_rubocop
   file "bin/rubocop", <%= code("bin/rubocop") %>

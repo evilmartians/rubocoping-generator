@@ -1,4 +1,4 @@
-if yes?("Would you like to generate a TODO config?")
+if yes?("Would you like to generate a TODO config? (y/n)")
   # First, run RuboCop and check the output
   # with formatter json
   in_root do
